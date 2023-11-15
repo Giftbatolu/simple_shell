@@ -17,6 +17,8 @@ char **split_string(char *input_string, char *delimiter);
 void execute_command(char **av);
 int display_prompt(void);
 char *checkup_path(char *command);
+void print_environment(void);
+int _strcmp(char *s1, char *s2);
 
 #define realsize(a, b) (((a) < (b)) ? (a) : (b))
 #define BUFSIZE 1024

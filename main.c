@@ -27,10 +27,12 @@ int main(int argc, char **argv)
 			exit(0);
 		}
 		line[_strcspn(line, "\n")] = '\0';
-		/*handle_comment(line);*/
+		handle_comment(line);
 		av = split_string(line, " ");
 		if (strcmp(av[0], "exit") == 0)
 			exit(0);
+		if (strcmp(av[0], "env") == 0)
+			print_environment();
 		if (av[0] != NULL)
 			execute_command(av);
 	}
