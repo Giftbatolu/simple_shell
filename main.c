@@ -29,6 +29,8 @@ int main(int argc, char **argv)
 		line[_strcspn(line, "\n")] = '\0';
 		/*handle_comment(line);*/
 		av = split_string(line, " ");
+		if (strcmp(av[0], "exit") == 0)
+			exit(0);
 		if (av[0] != NULL)
 			execute_command(av);
 	}

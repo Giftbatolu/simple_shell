@@ -11,13 +11,12 @@ void execute_command(char **av)
 	/*pid_t child_process;*/
 	/*int status;*/
 	char *command = NULL;
-	char *actual_cmd = NULL;
+	/*char *actual_cmd = NULL;*/
 
 	if (av)
 	{
 		command = av[0];
-		actual_cmd = checkup_path(command);
-		if (execve(actual_cmd, av, environ) == -1)
+		if (execve(command, av, environ) == -1)
 		{
 			perror("Error (execve)");
 		}
