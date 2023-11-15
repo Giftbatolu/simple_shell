@@ -17,12 +17,13 @@ int main(int argc, char **argv)
 	(void) argv;
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			display_prompt();
+		display_prompt();
 		if (getline(&line, &b, stdin) == -1)
 		{
 			perror("Error (getline)");
 			free(line);
+			if (isatty(STDIN_FILENO) != 0)
+				write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
 		line[_strcspn(line, "\n")] = '\0';
@@ -39,11 +40,20 @@ int main(int argc, char **argv)
 
 /**
  * display_prompt - function that display prompt
+ *
+ * Return: Always success.
  */
-void display_prompt(void)
+int display_prompt(void)
 {
 	char *prompt = "$ ";
+	ssize_t write_count = 0;
 
-	write(STDOUT_FILENO, prompt, 2);
-	fflush(stdout);
+	if (isatty(STDIN_FILENO) == 1)
+	{
+		write_count = write(STDOUT_FILENO, prompt, 2);
+		fflush(stdout);
+		if (write_count == -1)
+			exit(0);
+	}
+	return (0);
 }
