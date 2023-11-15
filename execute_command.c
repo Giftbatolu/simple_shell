@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * execute_command - function that execute command
  * @av: The command to be executed
@@ -14,7 +16,7 @@ void execute_command(char **av)
 	if (av)
 	{
 		command = av[0];
-		if (execve(command, av, environ) == -1)
+		if (execve(command, av, NULL) == -1)
 		{
 			perror("Error (execve)");
 		}

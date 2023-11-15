@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 extern char **environ;
 void handle_comment(char *input);
